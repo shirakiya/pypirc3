@@ -34,16 +34,16 @@ def main():
         pypirc.create(username, password)
         print('Created ~/.pypirc successfully!')
     else:
-        body = pypirc.get_body()
-        if body:
-            print(body)
-        else:
+        if not pypirc.is_exists():
             print("Don't exists ~/.pypirc! See pypirc3 help, and create ~/.pypirc with pypirc3")
+
+        print(pypirc.get_body())
 
 if __name__ == '__main__':
     try:
         main()
-        sys.exit(0)
     except Exception as e:
         print('{0}error: {1}'.format(e.args[0], e.args[1]))
         sys.exit(1)
+
+    sys.exit(0)
