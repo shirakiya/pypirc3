@@ -14,7 +14,7 @@ one line command on your tarminal.
 Require
 =======
 
--  Python > 3.0
+-  Python >= 3.2
 
 Installation
 ============
