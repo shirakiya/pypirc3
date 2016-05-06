@@ -4,7 +4,7 @@
 import argparse
 import sys
 
-from pypirc import Pypirc
+from .pypirc import Pypirc
 
 def main():
     ACTION_CREATE = 'create'
