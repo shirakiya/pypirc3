@@ -7,20 +7,30 @@ import sys
 from pypirc import Pypirc
 
 
+
 def main():
+    ACTION_CREATE = 'create'
+    ACTION_SHOW = 'show'
+
     parser = argparse.ArgumentParser(description = 'command line tool to show or create .pypirc with python3.')
-    parser.add_argument('-u', '--username', type = str, dest = 'username',
+    parser.add_argument('action', choices=[ACTION_CREATE, ACTION_SHOW],
+                        help = "define executing action.")
+    parser.add_argument('-u', '--username', type = str,
                         help = 'username registed for PyPI account')
-    parser.add_argument('-p', '--password', type = str, dest ='password',
+    parser.add_argument('-p', '--password', type = str,
                         help = 'password registed for PyPI account')
 
     options = parser.parse_args()
+    action = options.action
     username = options.username
     password = options.password
 
     pypirc = Pypirc()
 
-    if username and password:
+    if action == ACTION_CREATE:
+        if not (username and password):
+            raise Exception(parser.format_usage(), 'username and password are required!')
+
         pypirc.create(username, password)
         print('Created ~/.pypirc successfully!')
     else:
@@ -31,4 +41,9 @@ def main():
             print("Don't exists ~/.pypirc! See pypirc3 help, and create ~/.pypirc with pypirc3")
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        main()
+        sys.exit(0)
+    except Exception as e:
+        print('{0}error: {1}'.format(e.args[0], e.args[1]))
+        sys.exit(1)
