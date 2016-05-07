@@ -7,7 +7,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.rst'), encodin
 
 setup(
     name='pypirc3',
-    version='1.0.1',
+    version='1.0.2',
     description='command line tool to show and create .pypirc with Python 3',
     long_description=readme,
     url='https://github.com/shirakiya/pypirc3',

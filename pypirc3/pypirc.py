@@ -2,38 +2,23 @@
 # -*- coding: utf-8 -*-
 
 import os
-from configparser import ConfigParser
-from collections import OrderedDict
+from pypirc3.option import *
+from pypirc3.executor.creator import Creator
+from pypirc3.executor.viewer import Viewer
 
 class Pypirc(object):
 
-    def __init__(self):
-        self.path = os.path.join(os.path.expanduser('~'), '.pypirc')
-        self.fh = open(self.path, 'r+')
+    def __init__(self, action, username, password):
+        path = self._build_path()
 
-    def create(self, username, password):
-        config = self._build_config(username, password)
-        config.write(self.fh)
+        if action == ACTION_CREATE:
+            self.executor = Creator(path, username, password)
+        else:
+            self.executor = Viewer(path)
 
-    def get_body(self):
-        body = ''
-        if self.is_exists():
-            for line in self.fh.readlines():
-                body += line
-        return body
+    def _build_path(self):
+        return os.path.join(os.path.expanduser('~'), '.pypirc_test')
 
-    def is_exists(self):
-        return os.path.exists(self.path)
+    def execute(self):
+        return self.executor.execute()
 
-    def _build_config(self, username, password):
-        config = ConfigParser()
-        config['distutils'] = {'index-servers': 'pypi'}
-        config['pypi'] = OrderedDict((
-            ('repository', 'https://pypi.python.org/pypi'),
-            ('username', username),
-            ('password', password),
-        ))
-        return config
-
-    def __del__(self):
-        self.fh.close()
