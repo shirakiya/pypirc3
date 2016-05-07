@@ -17,7 +17,7 @@ class Pypirc(object):
             self.executor = Viewer(path)
 
     def _build_path(self):
-        return os.path.join(os.path.expanduser('~'), '.pypirc_test')
+        return os.path.join(os.path.expanduser('~'), '.pypirc')
 
     def execute(self):
         return self.executor.execute()
