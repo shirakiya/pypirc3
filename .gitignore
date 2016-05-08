@@ -1,6 +1,7 @@
 # Myself
 .python-version
 README.md
+tests/executor/.pypirc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -8,7 +8,7 @@ from pypirc3.executor.viewer import Viewer
 
 class Pypirc(object):
 
-    def __init__(self, action, username, password):
+    def __init__(self, action, username='', password=''):
         path = self._build_path()
 
         if action == ACTION_CREATE:
