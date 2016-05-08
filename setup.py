@@ -29,7 +29,7 @@ setup(
     install_requires=[],
     extras_require={
         'dev': [],
-        'test': [],
+        'test': ['nose'],
     },
     data_files=[],
     entry_points={
