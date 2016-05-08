@@ -1,3 +1,5 @@
+|Build Status|
+
 pypirc3
 =======
 
@@ -53,3 +55,6 @@ License
 
 Copyright © 2016 @shirakiya Released under the MIT license
 http://opensource.org/licenses/mit-license.php
+
+.. |Build Status| image:: https://travis-ci.org/shirakiya/pypirc3.svg?branch=master
+   :target: https://travis-ci.org/shirakiya/pypirc3
